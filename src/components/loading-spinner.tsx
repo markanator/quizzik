@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import "./loading-spinner.css";
 /**
  * Simple loading spinner, modified from: https://projects.lukehaas.me/css-loaders/.
@@ -21,7 +22,7 @@ interface ILoadingSpinnerProps {
   style?: any;
 }
 
-function LoadingSpinner(props: ILoadingSpinnerProps) {
+function LoadingSpinner(props: ILoadingSpinnerProps): ReactElement {
   const {
     size = "3rem",
     borderWidth = "0.5em",

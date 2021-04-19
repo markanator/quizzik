@@ -1,4 +1,4 @@
-import animationImage from "../images/beeple-potus-3012.gif";
+import animationImage from "../../images/beeple-potus-3012.gif";
 import "./about-page.css";
 
 function AboutPage() {
@@ -6,18 +6,18 @@ function AboutPage() {
     <main>
       <h1>About Me</h1>
 
-      <h2>Mike Hadley</h2>
+      <h2>Mark Ambrocio</h2>
       <p>
-        We're learning HTML <em>together</em>!
+        I'm learning <em>TypeScript</em>!
       </p>
 
       <p>Some things I've been doing lately:</p>
       <ul className="emoji-list">
-        <li>Learning to make sauerkraut</li>
-        <li>Cooking my way through a cookbook</li>
-        <li>Making cold brew</li>
+        <li>Riding bikes with my daughter</li>
+        <li>Working on coverting past projects to TypeScript</li>
+        <li>Applying for jobs!</li>
       </ul>
-      <p>Some languages I am going to be using:</p>
+      <p>Some languages or libraries I have used:</p>
       <ul className="emoji-list">
         <li>HTML</li>
         <li>CSS</li>
@@ -25,22 +25,15 @@ function AboutPage() {
         <li>TS</li>
         <li>React</li>
       </ul>
-      <p>Demo list:</p>
-      <ul>
-        <li>Some</li>
-        <li>Other</li>
-        <li>Stuff</li>
-      </ul>
 
       <p>
         An app I used daily is{" "}
         <a
-          href="https://todoist.com"
+          href="https://twitter.com/_mark_ambro"
           target="_blank"
           rel="noreferrer"
-          title="Software recommendation"
         >
-          Todoist
+          twitter: @_mark_ambro
         </a>
         .
       </p>

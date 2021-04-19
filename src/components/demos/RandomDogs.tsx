@@ -1,12 +1,11 @@
-import { ReactElement, useEffect, useState } from "react";
-import axios from "axios";
-import LoadingSpinner from "../common/loading-spinner";
-import ErrorMessage from "../common/error-message";
-import useFetchDogs from "../hooks/useFetchDogs";
+import { ReactElement } from "react";
+import useFetchDogs from "../../hooks/useFetchDogs";
+import ErrorMessage from "../error-message";
+import LoadingSpinner from "../loading-spinner";
 
-interface Props {}
+// interface Props {}
 
-function RandomDogs({}: Props): ReactElement {
+function RandomDogs(): ReactElement {
   const [isLoading, isError, data] = useFetchDogs(5);
 
   let contents;
@@ -19,7 +18,13 @@ function RandomDogs({}: Props): ReactElement {
     contents = (
       <>
         {(data as string[])?.map((dog, idx) => (
-          <img key={`dod-${idx}`} src={dog} height="150px" width="auto" />
+          <img
+            key={`dod-${idx}`}
+            alt="a dog"
+            src={dog}
+            height="150px"
+            width="auto"
+          />
         ))}
       </>
     );

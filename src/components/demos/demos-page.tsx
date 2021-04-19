@@ -1,12 +1,10 @@
-import RandomDogs from "./RandomDogs";
-
 function DemosPage() {
   return (
     <main>
       <h1>My First React App</h1>
 
-      <h2>Dogs</h2>
-      <RandomDogs />
+      {/* <h2>Dogs</h2>
+      <RandomDogs /> */}
 
       {/* <h2>Animation Demos</h2>
       <FramerMotionDemos />

@@ -1,9 +1,10 @@
-import ErrorMessage from "../common/error-message";
-import LoadingSpinner from "../common/loading-spinner";
+import { FC } from "react";
+import ErrorMessage from "../../components/error-message";
+import LoadingSpinner from "../../components/loading-spinner";
+import useQuizData from "../../hooks/use-quiz-data";
 import Game from "./game";
-import useQuizData from "./hooks/use-quiz-data";
 
-function QuizPage() {
+const QuizPage: FC = () => {
   const { isLoading, errorMessage, data } = useQuizData();
 
   let contents;
@@ -19,6 +20,6 @@ function QuizPage() {
       <main>{contents}</main>
     </>
   );
-}
+};
 
 export default QuizPage;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import decodeTriviaData from "../decodeTriviaData";
-import fetcher from "../../utils/fetcher";
+import decodeTriviaData from "../features/quiz/decodeTriviaData";
+import fetcher from "../utils/fetcher";
+// import decodeTriviaData from "../decodeTriviaData";
+// import fetcher from "../../utils/fetcher";
 
 interface IQuizStateTypes {
   isLoading: boolean;

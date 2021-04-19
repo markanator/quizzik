@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useSound from "use-sound";
-import shuffle from "../common/utils/shuffle";
+import shuffle from "../../utils/shuffle";
 import "./trivia-item.css";
 // is there a better way
-const incorrectSound = require("./sfx/131657__bertrof__game-sound-wrong.wav");
-const correctSound = require("./sfx/131660__bertrof__game-sound-correct.wav");
+const incorrectSound = require("../../data/131657__bertrof__game-sound-wrong.wav");
+const correctSound = require("../../data/131660__bertrof__game-sound-correct.wav");
 
 /**
  * The TriviaItem component renders an individual trivia question and waits for a user's answer.
