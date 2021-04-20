@@ -8,7 +8,7 @@ import useUser from "./hooks/useUser";
 
 // code split => React.lazy.. load :)
 // const NotFoundPage = React.lazy(() => import("./pages/not-found-page"));
-const QuizPage = React.lazy(() => import("./features/quiz/quiz-page"));
+const QuizPage = React.lazy(() => import("./features/play-quiz"));
 const QuizzesPage = React.lazy(() => import("./features/quizzes"));
 const AboutPage = React.lazy(() => import("./pages/about"));
 const HomePage = React.lazy(() => import("./pages/home"));

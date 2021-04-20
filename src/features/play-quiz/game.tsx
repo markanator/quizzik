@@ -8,7 +8,10 @@ import StartScreen from "./start-screen";
 /**
  * The Game is responsible for orchestrating the flow of the quiz game.
  */
-function Game({ quizData }) {
+interface Props {
+  quizData: any;
+}
+function Game({ quizData }: Props) {
   const [gameState, setGameState] = useState({
     score: 0,
     triviaIndex: 0,
@@ -45,11 +48,15 @@ function Game({ quizData }) {
       setGameState({ ...gameState, state: "end" });
     } else {
       // Using the spread operator to copy the gameState and override the triviaIndex.
-      setGameState({ ...gameState, state: "running", triviaIndex: triviaIndex + 1 });
+      setGameState({
+        ...gameState,
+        state: "running",
+        triviaIndex: triviaIndex + 1,
+      });
     }
   };
 
-  const onAnswerSelected = (wasPlayerCorrect) => {
+  const onAnswerSelected = (wasPlayerCorrect: boolean) => {
     if (wasPlayerCorrect) {
       setGameState({
         ...gameState,
@@ -91,7 +98,11 @@ function Game({ quizData }) {
 
   return (
     <>
-      <Stats score={score} questionNumber={questionNumber} totalQuestions={numQuestions} />
+      <Stats
+        score={score}
+        questionNumber={questionNumber}
+        totalQuestions={numQuestions}
+      />
       <FadeWrapper>
         <FadeTransition key={pageKey}>{pageContent}</FadeTransition>
       </FadeWrapper>

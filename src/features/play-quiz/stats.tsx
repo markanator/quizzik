@@ -1,6 +1,11 @@
 import "./stats.css";
 
-function Stat({ label, value }) {
+interface StatProps {
+  label: string;
+  value: number | string;
+}
+
+function Stat({ label, value }: StatProps) {
   return (
     <li className="stats__stat-container">
       <div className="stats__stat-label">{label}:</div>
@@ -16,7 +21,12 @@ function Stat({ label, value }) {
  * @param {number} props.questionNumber
  * @param {number} props.totalQuestions
  */
-function Stats({ score, questionNumber, totalQuestions }) {
+interface Props {
+  score: number;
+  questionNumber: number;
+  totalQuestions: number;
+}
+function Stats({ score, questionNumber, totalQuestions }: Props) {
   return (
     <ul className="stats">
       <Stat label="Score" value={score} />

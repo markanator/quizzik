@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import "./end-screen.css";
 
-function EndStat({ label, value }) {
+interface EndStatProps {
+  label: string;
+  value: number | string;
+}
+
+function EndStat({ label, value }: EndStatProps) {
   return (
     <div className="end-screen__stat">
       <div className="end-screen__stat-label">{label}</div>
@@ -18,7 +23,19 @@ function EndStat({ label, value }) {
  * @param {() => void} props.onRetryClick A function to run when the retry button is clicked.
  * @param {number} props.playTime Total play time in seconds
  */
-function EndScreen({ score, bestScore, onRetryClick, playTime }) {
+
+interface EndScreenProps {
+  score: number;
+  bestScore: number;
+  playTime: number;
+  onRetryClick: () => void;
+}
+function EndScreen({
+  score,
+  bestScore,
+  onRetryClick,
+  playTime,
+}: EndScreenProps) {
   const minutes = `${Math.floor(playTime / 60)}`.padStart(2, "0");
   const seconds = `${Math.floor(playTime % 60)}`.padStart(2, "0");
   const timeString = `${minutes}:${seconds}`;

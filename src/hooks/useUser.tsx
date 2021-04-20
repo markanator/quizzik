@@ -1,4 +1,10 @@
-import { useEffect, useState, createContext, useContext } from "react";
+import {
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import { auth, provider, firebase } from "../firebase";
 
 interface IUserState {
@@ -14,8 +20,12 @@ interface IUserContext extends IUserState {
   signOut: () => Promise<void>;
 }
 
+interface IProviderProps {
+  children: ReactNode;
+}
+
 // Main User Provider
-function UserProvider({ children }) {
+function UserProvider({ children }: IProviderProps) {
   const [userState, setUserState] = useState<IUserState>({
     user: auth.currentUser,
     isLoading: auth.currentUser === null ? true : false,
@@ -26,14 +36,14 @@ function UserProvider({ children }) {
   const userId = isSignedIn ? (userState.user!.uid as any) : undefined;
 
   useEffect(() => {
-    const onChange = (currentUser) => {
+    const onChange = (currentUser: firebase.User | null) => {
       setUserState({
         user: currentUser,
         isLoading: false,
         error: null,
       });
     };
-    const onError = (error) => {
+    const onError = (error: firebase.auth.Error) => {
       console.log(error);
       setUserState({ user: null, isLoading: false, error });
     };

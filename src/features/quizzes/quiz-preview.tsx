@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import "./quiz-preview.css";
+import { firebase } from "../../firebase";
 
-function QuizPreview({ id, data }) {
+interface Props {
+  id: string;
+  data:
+    | {
+        title: string;
+        tags: string[];
+        description: string;
+        ownerName: string;
+      }
+    | firebase.firestore.DocumentData;
+}
+function QuizPreview({ id, data }: Props) {
   let { title, tags, description, ownerName } = data;
 
   if (!tags) tags = [];
@@ -13,7 +25,7 @@ function QuizPreview({ id, data }) {
     <article className="quiz-preview">
       <h3 className="quiz-preview__title">{title}</h3>
       <ul className="quiz-preview__tags">
-        {tags.map((tag) => (
+        {tags.map((tag: string) => (
           <li className="quiz-preview__tag" key={tag}>
             {tag}
           </li>

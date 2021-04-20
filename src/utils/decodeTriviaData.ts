@@ -6,7 +6,7 @@ export default function decodeTriviaData(data: any[]) {
       ...item,
       question: he.decode(item.question),
       correct_answer: he.decode(item.correct_answer),
-      incorrect_answers: item.incorrect_answers.map((incorrect) =>
+      incorrect_answers: item.incorrect_answers.map((incorrect: string) =>
         he.decode(incorrect)
       ),
     };

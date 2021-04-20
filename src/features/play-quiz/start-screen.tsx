@@ -1,7 +1,20 @@
 import ErrorMessage from "components/error-message";
 import "./start-screen.css";
 
-function StartScreen({ quizData, onPlayClick }) {
+interface Props {
+  quizData: {
+    title: string;
+    tags: string[];
+    description: string;
+    difficulty: string;
+    ownerName: string;
+    questions: string[];
+    lastModifiedAt: any;
+  };
+  onPlayClick: () => void;
+}
+
+function StartScreen({ quizData, onPlayClick }: Props) {
   let {
     title,
     tags,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import shuffle from "utils/shuffle";
 import "./trivia-item.css";
 
@@ -11,13 +11,22 @@ import "./trivia-item.css";
  * @param {() => void} props.onNextClick
  * @param {(boolean) => void} props.onAnswerSelected
  */
+
+interface Props {
+  correctAnswer: string;
+  incorrectAnswers: string[];
+  question: string;
+  onNextClick: () => void;
+  onAnswerSelected: (arg0: boolean) => void;
+}
+
 function TriviaItem({
   correctAnswer,
   incorrectAnswers,
   question,
   onNextClick,
   onAnswerSelected,
-}) {
+}: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const hasPickedAnswer = selectedAnswer !== null;
   // const [playCorrect] = useSound(correctSound, { volume: 0.5 });
@@ -30,7 +39,7 @@ function TriviaItem({
   let nextButtonClassName = "trivia-item__button trivia-item__next-button";
   if (!hasPickedAnswer) nextButtonClassName += " trivia-item__button--disabled";
 
-  const onAnswerClick = (event) => {
+  const onAnswerClick = (event: any) => {
     const playerAnswer = event.target.innerHTML;
     setSelectedAnswer(playerAnswer);
     const wasPlayerCorrect = playerAnswer === correctAnswer;
