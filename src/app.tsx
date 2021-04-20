@@ -1,22 +1,30 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import PageFooter from "./components/page-footer";
 import PageHeader from "./components/page-header";
-import useUser from "./hooks/useUser";
+import { UserProvider } from "./hooks/useUser";
+import LoadingSpinner from "./components/loading-spinner";
 import QuizPage from "./features/quiz/quiz-page";
 import AboutPage from "./pages/about";
 import HomePage from "./pages/home";
-import LoadingSpinner from "./components/loading-spinner";
+import useUser from "./hooks/useUser";
 
-/**
- * The App component is responsible for setting up routing.
- */
-function App() {
-  const { isLoading } = useUser();
-
+function ProviderWrappedApp() {
   return (
     <BrowserRouter>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </BrowserRouter>
+  );
+}
+
+function App() {
+  const userState = useUser();
+
+  return (
+    <>
       <PageHeader />
-      {isLoading ? (
+      {userState.isLoading ? (
         <LoadingSpinner />
       ) : (
         <Switch>
@@ -33,8 +41,8 @@ function App() {
       )}
 
       <PageFooter />
-    </BrowserRouter>
+    </>
   );
 }
 
-export default App;
+export default ProviderWrappedApp;
