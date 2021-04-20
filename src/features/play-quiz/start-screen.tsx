@@ -1,8 +1,16 @@
-import ErrorMessage from "../common/error-message";
+import ErrorMessage from "components/error-message";
 import "./start-screen.css";
 
 function StartScreen({ quizData, onPlayClick }) {
-  let { title, tags, description, difficulty, ownerName, questions, lastModifiedAt } = quizData;
+  let {
+    title,
+    tags,
+    description,
+    difficulty,
+    ownerName,
+    questions,
+    lastModifiedAt,
+  } = quizData;
 
   if (!tags) tags = [];
   if (!title) title = "Untitled Quiz";
@@ -30,8 +38,16 @@ function StartScreen({ quizData, onPlayClick }) {
         {modifiedString && <li>{modifiedString}</li>}
         <li>{questions.length} questions</li>
       </ul>
-      {!canPlay && <ErrorMessage>Cannot play this quiz - it has no questions yet!</ErrorMessage>}
-      <button disabled={!canPlay} onClick={onPlayClick} className="start-screen__play-button">
+      {!canPlay && (
+        <ErrorMessage>
+          Cannot play this quiz - it has no questions yet!
+        </ErrorMessage>
+      )}
+      <button
+        disabled={!canPlay}
+        onClick={onPlayClick}
+        className="start-screen__play-button"
+      >
         Play
       </button>
     </div>
