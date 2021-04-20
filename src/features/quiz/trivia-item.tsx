@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useSound from "use-sound";
 import shuffle from "../../utils/shuffle";
 import "./trivia-item.css";
 // is there a better way
@@ -26,8 +25,6 @@ function TriviaItem({
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const hasPickedAnswer = selectedAnswer !== null;
-  const [playCorrect] = useSound(correctSound, { volume: 0.5 });
-  const [playIncorrect] = useSound(incorrectSound, { volume: 0.5 });
 
   const allAnswers = [correctAnswer, ...incorrectAnswers];
   // useState can take a function that is run only when the state is initialized:
@@ -40,8 +37,8 @@ function TriviaItem({
     const playerAnswer = event.target.innerHTML;
     setSelectedAnswer(playerAnswer);
     const wasPlayerCorrect = playerAnswer === correctAnswer;
-    if (wasPlayerCorrect) playCorrect();
-    else playIncorrect();
+    // if (wasPlayerCorrect) playCorrect();
+    // else playIncorrect();
     onAnswerSelected(wasPlayerCorrect, difficulty);
   };
 

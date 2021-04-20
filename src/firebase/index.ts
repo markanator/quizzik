@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 
+// bring in services we want to use
 import "firebase/firestore";
+import "firebase/auth";
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -26,5 +28,8 @@ if (!firebaseConfig.appId) throw new Error("Mising Firebase field: appId");
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
+const auth = firebase.auth();
 
-export { db, firebase };
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export { db, firebase, auth, provider };

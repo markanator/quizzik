@@ -3,7 +3,7 @@ import PageFooter from "./components/page-footer";
 import PageHeader from "./components/page-header";
 import QuizPage from "./features/quiz/quiz-page";
 import AboutPage from "./pages/about";
-import HomePage from "./pages/home/home-page";
+import HomePage from "./pages/home";
 
 /**
  * The App component is responsible for setting up routing.
