@@ -60,17 +60,18 @@ export default function GetOneUser(): ReactElement {
 
   return (
     <div>
-      <h3>Read All Users</h3>
+      <h3>Read 1 User</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="userId"></label>
         <input
           type="text"
           name="userId"
           value={userId}
+          placeholder="firestore user id"
           onChange={(e) => setUserId(e.target.value)}
         />
         <br />
-        <button type="submit">Read Users</button>
+        <button type="submit">Get 1 User</button>
       </form>
       <>{contents}</>
     </div>
