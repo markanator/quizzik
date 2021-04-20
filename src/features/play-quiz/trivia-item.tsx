@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { useState } from "react";
 import shuffle from "utils/shuffle";
 import "./trivia-item.css";
 
