@@ -3,7 +3,7 @@ import ErrorMessage from "../../components/error-message";
 import useUser from "../../hooks/useUser";
 
 const HomePage = (): ReactElement => {
-  const { error, isLoading, isSignedIn, signIn, signOut, user } = useUser();
+  const { error, isLoading, isSignedIn, signIn, signOut } = useUser();
 
   if (error) {
     console.log(error);

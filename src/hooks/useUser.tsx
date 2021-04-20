@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, provider } from "../firebase";
 
 interface IUserState {
@@ -9,12 +9,30 @@ interface IUserState {
 
 function useUser() {
   const [userState, setUserState] = useState<IUserState>({
-    user: null,
-    isLoading: false,
+    user: auth.currentUser,
+    isLoading: auth.currentUser === null ? true : false,
     error: null,
   });
+
   const isSignedIn = userState.user !== null;
   const userId = isSignedIn ? userState.user.id : undefined;
+
+  useEffect(() => {
+    const onChange = (currentUser) => {
+      setUserState({
+        user: currentUser,
+        isLoading: false,
+        error: null,
+      });
+    };
+    const onError = (error) => {
+      console.log(error);
+      setUserState({ user: null, isLoading: false, error });
+    };
+    const unsub = auth.onAuthStateChanged(onChange, onError);
+
+    return unsub;
+  }, []);
 
   const signIn = async () => {
     setUserState({
@@ -24,18 +42,14 @@ function useUser() {
     });
     try {
       const credentials = await auth.signInWithPopup(provider);
-      console.log("Signed In!");
-      console.log(credentials);
       if (!credentials.user) {
         throw new Error("No user in credz");
       }
-      const { displayName, uid } = credentials!.user;
       setUserState({
         ...userState,
         user: credentials.user,
         isLoading: false,
       });
-      console.log(displayName, uid);
     } catch (err) {
       console.error(err);
       setUserState({
