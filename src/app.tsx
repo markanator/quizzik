@@ -1,12 +1,16 @@
+import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import PageFooter from "./components/page-footer";
 import PageHeader from "./components/page-header";
 import { UserProvider } from "./hooks/useUser";
 import LoadingSpinner from "./components/loading-spinner";
-import QuizPage from "./features/quiz/quiz-page";
-import AboutPage from "./pages/about";
-import HomePage from "./pages/home";
 import useUser from "./hooks/useUser";
+
+// code split => React.lazy.. load :)
+const QuizPage = React.lazy(() => import("./features/quiz/quiz-page"));
+const AboutPage = React.lazy(() => import("./pages/about"));
+const HomePage = React.lazy(() => import("./pages/home"));
+const FirebaseTest = React.lazy(() => import("./pages/FirebaseTest"));
 
 function ProviderWrappedApp() {
   return (
@@ -28,15 +32,26 @@ function App() {
         <LoadingSpinner />
       ) : (
         <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/quiz">
-            <QuizPage />
-          </Route>
-          <Route path="/about">
-            <AboutPage />
-          </Route>
+          <React.Suspense
+            fallback={
+              <>
+                <LoadingSpinner />
+              </>
+            }
+          >
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/quiz">
+              <QuizPage />
+            </Route>
+            <Route path="/about">
+              <AboutPage />
+            </Route>
+            <Route path="/demo">
+              <FirebaseTest />
+            </Route>
+          </React.Suspense>
         </Switch>
       )}
 
