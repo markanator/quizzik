@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
-import useFetchDogs from "../../hooks/useFetchDogs";
-import ErrorMessage from "../error-message";
-import LoadingSpinner from "../loading-spinner";
+import ErrorMessage from "../components/error-message";
+import LoadingSpinner from "../components/loading-spinner";
+import useFetchDogs from "../hooks/useFetchDogs";
 
 // interface Props {}
 

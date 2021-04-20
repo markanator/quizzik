@@ -1,7 +1,9 @@
 import { useState } from "react";
-import shuffle from "../../utils/shuffle";
+import useSound from "use-sound";
+import shuffle from "../common/utils/shuffle";
+import correctSound from "./sfx/131660__bertrof__game-sound-correct.wav";
+import incorrectSound from "./sfx/131657__bertrof__game-sound-wrong.wav";
 import "./trivia-item.css";
-// is there a better way
 
 /**
  * The TriviaItem component renders an individual trivia question and waits for a user's answer.
@@ -9,20 +11,14 @@ import "./trivia-item.css";
  * @param {string} props.correctAnswer
  * @param {string[]} props.incorrectAnswers
  * @param {string} props.question
- * @param {"easy" | "medium" | "hard"} props.difficulty
  * @param {() => void} props.onNextClick
  * @param {(boolean) => void} props.onAnswerSelected
  */
-function TriviaItem({
-  correctAnswer,
-  incorrectAnswers,
-  question,
-  difficulty,
-  onNextClick,
-  onAnswerSelected,
-}) {
+function TriviaItem({ correctAnswer, incorrectAnswers, question, onNextClick, onAnswerSelected }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const hasPickedAnswer = selectedAnswer !== null;
+  const [playCorrect] = useSound(correctSound, { volume: 0.5 });
+  const [playIncorrect] = useSound(incorrectSound, { volume: 0.5 });
 
   const allAnswers = [correctAnswer, ...incorrectAnswers];
   // useState can take a function that is run only when the state is initialized:
@@ -35,14 +31,13 @@ function TriviaItem({
     const playerAnswer = event.target.innerHTML;
     setSelectedAnswer(playerAnswer);
     const wasPlayerCorrect = playerAnswer === correctAnswer;
-    // if (wasPlayerCorrect) playCorrect();
-    // else playIncorrect();
-    onAnswerSelected(wasPlayerCorrect, difficulty);
+    if (wasPlayerCorrect) playCorrect();
+    else playIncorrect();
+    onAnswerSelected(wasPlayerCorrect);
   };
 
   return (
     <div>
-      <p className="trivia-item__difficulty">Difficulty: {difficulty}</p>
       <p className="trivia-item__question">{question}</p>
       <ul className="trivia-item__answers">
         {shuffledAnswers.map((answer, i) => {
@@ -61,22 +56,14 @@ function TriviaItem({
 
           return (
             <li key={answer}>
-              <button
-                className={className}
-                onClick={onAnswerClick}
-                disabled={hasPickedAnswer}
-              >
+              <button className={className} onClick={onAnswerClick} disabled={hasPickedAnswer}>
                 {answer}
               </button>
             </li>
           );
         })}
       </ul>
-      <button
-        className={nextButtonClassName}
-        onClick={onNextClick}
-        disabled={!hasPickedAnswer}
-      >
+      <button className={nextButtonClassName} onClick={onNextClick} disabled={!hasPickedAnswer}>
         Next ➡
       </button>
     </div>

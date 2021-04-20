@@ -7,7 +7,9 @@ import LoadingSpinner from "./components/loading-spinner";
 import useUser from "./hooks/useUser";
 
 // code split => React.lazy.. load :)
+const NotFoundPage = React.lazy(() => import("./pages/not-found-page"));
 const QuizPage = React.lazy(() => import("./features/quiz/quiz-page"));
+const QuizzesPage = React.lazy(() => import("./features/quizzes/quizzes-page"));
 const AboutPage = React.lazy(() => import("./pages/about"));
 const HomePage = React.lazy(() => import("./pages/home"));
 const FirebaseTest = React.lazy(() => import("./pages/FirebaseTest"));
@@ -42,14 +44,20 @@ function App() {
             <Route path="/" exact>
               <HomePage />
             </Route>
-            <Route path="/quiz">
-              <QuizPage />
-            </Route>
             <Route path="/about">
               <AboutPage />
             </Route>
+            <Route path="/quizzes">
+              <QuizzesPage />
+            </Route>
+            <Route path="/quiz">
+              <QuizPage />
+            </Route>
             <Route path="/demo">
               <FirebaseTest />
+            </Route>
+            <Route path="*">
+              <NotFoundPage />
             </Route>
           </React.Suspense>
         </Switch>
