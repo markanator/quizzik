@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-async function fetcher(url: string): Promise<any> {
+async function fetcher<ResponseType>(url: string): Promise<ResponseType> {
   const response = await fetch(url);
 
   // Stops the chain of thens and kicks things over to the catch.

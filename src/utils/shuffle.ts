@@ -1,4 +1,4 @@
-function shuffle(array: string[]): string[] {
+function shuffle<NodeType>(array: NodeType[]): NodeType[] {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const swapIndex = Math.floor(Math.random() * (i + 1));

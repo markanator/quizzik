@@ -20,7 +20,7 @@ function useQuizData(amount = 5, difficulty = ""): IQuizStateTypes {
       const url = `https://opentdb.com/api.php?${params.toString()}`;
       try {
         //! custom fetcher
-        const { response_code, results }: IFetchReturnTypes = await fetcher(
+        const { response_code, results } = await fetcher<IFetchReturnTypes>(
           url
         );
 

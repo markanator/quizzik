@@ -39,8 +39,10 @@ function TriviaItem({
   let nextButtonClassName = "trivia-item__button trivia-item__next-button";
   if (!hasPickedAnswer) nextButtonClassName += " trivia-item__button--disabled";
 
-  const onAnswerClick = ({ target }: any) => {
-    const playerAnswer = target.innerHTML;
+  const onAnswerClick: React.MouseEventHandler<HTMLButtonElement> = ({
+    target,
+  }) => {
+    const playerAnswer = (target as HTMLButtonElement).innerHTML;
     setSelectedAnswer(playerAnswer);
     const wasPlayerCorrect = playerAnswer === correctAnswer;
     // if (wasPlayerCorrect) playCorrect();
