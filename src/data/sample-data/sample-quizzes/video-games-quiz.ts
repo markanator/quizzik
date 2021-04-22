@@ -1,6 +1,7 @@
+import { QuizType } from "types/LoadDateTypes";
 import { firebase } from "../../../firebase";
 
-const videoGamesQuiz = {
+const videoGamesQuiz: QuizType = {
   id: "c1v5oLsWvZncnpJBp9Qa",
   data: {
     title: "Video Game Knowledge",

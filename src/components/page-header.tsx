@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import "./page-header.css";
 
-function PageHeader() {
+function PageHeader(): ReactElement {
   return (
     <header className="page-header">
       <span className="page-header__logo">💿💿💿</span>

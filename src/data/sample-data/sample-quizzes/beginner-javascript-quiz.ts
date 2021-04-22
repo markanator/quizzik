@@ -1,6 +1,7 @@
+import { QuizType } from "types/LoadDateTypes";
 import { firebase } from "../../../firebase";
 
-const beginnerJavascriptQuiz = {
+const beginnerJavascriptQuiz: QuizType = {
   id: "1fUUtNZopmr91RiOherq",
   data: {
     title: "Beginner JavaScript",

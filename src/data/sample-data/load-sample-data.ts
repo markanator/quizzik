@@ -7,11 +7,11 @@ import quizzes from "./sample-quizzes";
  * run this in production. If you want a better way to manage data during development, check out
  * Firebase's local development tool.
  */
-async function loadSampleData() {
+async function loadSampleData(): Promise<void> {
   console.log("Loading sample quizzes into firestore...");
 
-  for (let quizData of quizzes) {
-    const { id, data } = quizData;
+  // eslint-disable-next-line prefer-const
+  for (const { id, data } of quizzes) {
     try {
       await db.collection("quizzes").doc(id).set(data);
     } catch (error) {
