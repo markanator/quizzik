@@ -4,12 +4,13 @@ import Stats from "./stats";
 import TriviaItem from "./trivia-item";
 import { FadeTransition, FadeWrapper } from "./fade-transition";
 import StartScreen from "./start-screen";
+import { IQuizDataType } from "types/LoadDateTypes";
 
 /**
  * The Game is responsible for orchestrating the flow of the quiz game.
  */
 interface Props {
-  quizData: any;
+  quizData: IQuizDataType;
 }
 function Game({ quizData }: Props): ReactElement {
   const [gameState, setGameState] = useState({

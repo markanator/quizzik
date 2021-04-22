@@ -1,31 +1,16 @@
 import ErrorMessage from "components/error-message";
 import { ReactElement } from "react";
+import { IQuizDataType } from "types/LoadDateTypes";
 import "./start-screen.css";
 
 interface Props {
-  quizData: {
-    title: string;
-    tags: string[];
-    description: string;
-    difficulty: string;
-    ownerName: string;
-    questions: string[];
-    lastModifiedAt: Date;
-  };
+  quizData: IQuizDataType;
   onPlayClick: () => void;
 }
 
 function StartScreen({ quizData, onPlayClick }: Props): ReactElement {
-  let {
-    title,
-    tags,
-    description,
-    difficulty,
-    ownerName,
-    questions,
-    // eslint-disable-next-line prefer-const
-    lastModifiedAt,
-  } = quizData;
+  let { title, tags, description, difficulty, ownerName, questions } = quizData;
+  const { lastModifiedAt } = quizData;
 
   if (!tags) tags = [];
   if (!title) title = "Untitled Quiz";
@@ -37,7 +22,7 @@ function StartScreen({ quizData, onPlayClick }: Props): ReactElement {
   const canPlay = questions.length > 0;
   const tagString = tags.length > 0 ? `Tagged as: ${tags.join(", ")}` : "";
   const modifiedString = lastModifiedAt
-    ? `Last modified on ${lastModifiedAt.toLocaleDateString()}`
+    ? `Last modified on ${lastModifiedAt.toDate().toLocaleDateString()}`
     : "";
 
   return (
