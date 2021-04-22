@@ -56,7 +56,7 @@ export default function GetOneUser(): ReactElement {
   else if (errorMessage) contents = <ErrorMessage>{errorMessage}</ErrorMessage>;
   else if (docSnapshot === undefined) contents = <p>Search for a user!</p>;
   else if (!docSnapshot.exists) contents = <p>No User found</p>;
-  else contents = <UserCard data={docSnapshot.data() as any} />;
+  else contents = <UserCard data={docSnapshot.data()} />;
 
   return (
     <div>

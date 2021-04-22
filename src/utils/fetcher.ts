@@ -1,4 +1,5 @@
-export default async function fetcher(url: string) {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+async function fetcher(url: string): Promise<any> {
   const response = await fetch(url);
 
   // Stops the chain of thens and kicks things over to the catch.
@@ -11,3 +12,5 @@ export default async function fetcher(url: string) {
   const json = await response.json();
   return json;
 }
+
+export default fetcher;

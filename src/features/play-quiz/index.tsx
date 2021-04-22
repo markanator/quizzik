@@ -1,8 +1,6 @@
-// import Game from "./game";
-// import LoadingSpinner from "../common/loading-spinner";
-// import ErrorMessage from "../common/error-message";
+import { ReactElement } from "react";
 
-function PlayQuizPage() {
+function PlayQuizPage(): ReactElement {
   return <main>TODO!</main>;
 }
 

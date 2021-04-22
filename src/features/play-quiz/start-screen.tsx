@@ -1,4 +1,5 @@
 import ErrorMessage from "components/error-message";
+import { ReactElement } from "react";
 import "./start-screen.css";
 
 interface Props {
@@ -9,12 +10,12 @@ interface Props {
     difficulty: string;
     ownerName: string;
     questions: string[];
-    lastModifiedAt: any;
+    lastModifiedAt: Date;
   };
   onPlayClick: () => void;
 }
 
-function StartScreen({ quizData, onPlayClick }: Props) {
+function StartScreen({ quizData, onPlayClick }: Props): ReactElement {
   let {
     title,
     tags,
@@ -36,7 +37,7 @@ function StartScreen({ quizData, onPlayClick }: Props) {
   const canPlay = questions.length > 0;
   const tagString = tags.length > 0 ? `Tagged as: ${tags.join(", ")}` : "";
   const modifiedString = lastModifiedAt
-    ? `Last modified on ${lastModifiedAt.toDate().toLocaleDateString()}`
+    ? `Last modified on ${lastModifiedAt.toLocaleDateString()}`
     : "";
 
   return (

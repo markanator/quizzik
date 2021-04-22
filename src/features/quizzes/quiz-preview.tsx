@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./quiz-preview.css";
 import { firebase } from "../../firebase";
+import { ReactElement } from "react";
 
 interface Props {
   id: string;
@@ -13,7 +14,7 @@ interface Props {
       }
     | firebase.firestore.DocumentData;
 }
-function QuizPreview({ id, data }: Props) {
+function QuizPreview({ id, data }: Props): ReactElement {
   let { title, tags, description, ownerName } = data;
 
   if (!tags) tags = [];

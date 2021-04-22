@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import "./stats.css";
 
 interface StatProps {
@@ -26,7 +27,7 @@ interface Props {
   questionNumber: number;
   totalQuestions: number;
 }
-function Stats({ score, questionNumber, totalQuestions }: Props) {
+function Stats({ score, questionNumber, totalQuestions }: Props): ReactElement {
   return (
     <ul className="stats">
       <Stat label="Score" value={score} />

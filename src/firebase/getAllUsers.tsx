@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { db } from ".";
 import ErrorMessage from "../components/error-message";
 import LoadingSpinner from "../components/loading-spinner";
@@ -13,7 +13,7 @@ export interface IQuery {
     | undefined;
 }
 
-export const GetAllUsers = () => {
+export const GetAllUsers = (): ReactElement => {
   const [queryState, setQueryState] = useState<IQuery>({
     isLoading: true,
     errorMessage: "",
@@ -54,7 +54,7 @@ export const GetAllUsers = () => {
   else if (errorMessage) return <ErrorMessage>{errorMessage}</ErrorMessage>;
   else if (!docSnapshots) return <ErrorMessage>Nothing found</ErrorMessage>;
   else
-    contents = docSnapshots!.map((user) => (
+    contents = docSnapshots.map((user) => (
       <UserCard key={user.id} data={user.data()} />
     ));
 

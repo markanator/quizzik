@@ -1,6 +1,8 @@
 import he from "he";
 
-export default function decodeTriviaData(data: any[]): any {
+export default function decodeTriviaData(
+  data: QuestionDataType[]
+): QuestionDataType[] {
   const decodedData = data.map((item) => {
     return {
       ...item,
@@ -12,4 +14,13 @@ export default function decodeTriviaData(data: any[]): any {
     };
   });
   return decodedData;
+}
+
+export interface QuestionDataType {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
 }

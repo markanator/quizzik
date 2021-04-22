@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 /**
  * Wraps around a FadeTransition. If you want enter AND exit transitions, be sure that you put
@@ -11,7 +11,7 @@ import { ReactNode } from "react";
 interface IWithChildProps {
   children: ReactNode;
 }
-function FadeWrapper({ children }: IWithChildProps) {
+function FadeWrapper({ children }: IWithChildProps): ReactElement {
   return <AnimatePresence exitBeforeEnter={true}>{children}</AnimatePresence>;
 }
 
@@ -22,7 +22,7 @@ function FadeWrapper({ children }: IWithChildProps) {
  * @param {React.ReactNode} props.children
  */
 
-function FadeTransition({ children }: IWithChildProps) {
+function FadeTransition({ children }: IWithChildProps): ReactElement {
   return (
     <motion.div
       initial={{ opacity: 0, x: 75 }}

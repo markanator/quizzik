@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ReactElement } from "react";
 import "./end-screen.css";
 
 interface EndStatProps {
@@ -35,7 +36,7 @@ function EndScreen({
   bestScore,
   onRetryClick,
   playTime,
-}: EndScreenProps) {
+}: EndScreenProps): ReactElement {
   const minutes = `${Math.floor(playTime / 60)}`.padStart(2, "0");
   const seconds = `${Math.floor(playTime % 60)}`.padStart(2, "0");
   const timeString = `${minutes}:${seconds}`;

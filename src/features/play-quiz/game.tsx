@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import EndScreen from "./end-screen";
 import Stats from "./stats";
 import TriviaItem from "./trivia-item";
@@ -11,7 +11,7 @@ import StartScreen from "./start-screen";
 interface Props {
   quizData: any;
 }
-function Game({ quizData }: Props) {
+function Game({ quizData }: Props): ReactElement {
   const [gameState, setGameState] = useState({
     score: 0,
     triviaIndex: 0,
