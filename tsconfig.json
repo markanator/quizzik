@@ -9,7 +9,7 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "noImplicitReturns": true,
-    "strict": false,
+    "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,

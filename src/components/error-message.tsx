@@ -6,7 +6,11 @@ import * as React from "react";
  * @param {object} props
  * @param {React.ReactNode} props.children Message to display.
  */
-function ErrorMessage({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+function ErrorMessage({ children }: Props): React.ReactElement {
   return <p className="error-message">{children}</p>;
 }
 

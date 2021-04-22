@@ -19,7 +19,7 @@ interface ILoadingSpinnerProps {
   spinnerColor?: string;
   backgroundColor?: string;
   screenReaderMessage?: string;
-  style?: any;
+  style?: React.CSSProperties | undefined;
 }
 
 function LoadingSpinner(props: ILoadingSpinnerProps): ReactElement {
