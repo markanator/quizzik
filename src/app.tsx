@@ -28,42 +28,39 @@ function ProviderWrappedApp(): ReactElement {
 function App(): ReactElement {
   const userState = useUser();
 
+  if (userState.isLoading) return <LoadingSpinner />;
+
   return (
     <>
       <PageHeader />
-      {userState.isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <React.Suspense
-          fallback={
-            <>
-              <LoadingSpinner />
-            </>
-          }
-        >
-          <Switch>
-            <Route path="/" exact>
-              <HomePage />
-            </Route>
-            <Route path="/about">
-              <AboutPage />
-            </Route>
-            <Route path="/quizzes">
-              <QuizzesPage />
-            </Route>
-            <Route path="/quiz">
-              <QuizPage />
-            </Route>
-            <Route path="/demo">
-              <FirebaseTest />
-            </Route>
-            <Route>
-              <NotFoundPage />
-            </Route>
-          </Switch>
-        </React.Suspense>
-      )}
-
+      <React.Suspense
+        fallback={
+          <>
+            <LoadingSpinner />
+          </>
+        }
+      >
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/about">
+            <AboutPage />
+          </Route>
+          <Route path="/quizzes">
+            <QuizzesPage />
+          </Route>
+          <Route path="/quiz">
+            <QuizPage />
+          </Route>
+          <Route path="/demo">
+            <FirebaseTest />
+          </Route>
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </React.Suspense>
       <PageFooter />
     </>
   );
