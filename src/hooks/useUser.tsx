@@ -1,31 +1,15 @@
 import {
+  createContext,
+  ReactElement,
+  useContext,
   useEffect,
   useState,
-  createContext,
-  useContext,
-  ReactNode,
 } from "react";
-import { auth, provider, firebase } from "../firebase";
-
-interface IUserState {
-  user: firebase.User | null;
-  isLoading: boolean;
-  error: any | null;
-}
-
-interface IUserContext extends IUserState {
-  isSignedIn: boolean;
-  userId: string | undefined;
-  signIn: () => Promise<void>;
-  signOut: () => Promise<void>;
-}
-
-interface IProviderProps {
-  children: ReactNode;
-}
+import { IProviderProps, IUserContext, IUserState } from "types/UseUserTypes";
+import { auth, firebase, provider } from "../firebase";
 
 // Main User Provider
-function UserProvider({ children }: IProviderProps) {
+function UserProvider({ children }: IProviderProps): ReactElement {
   const [userState, setUserState] = useState<IUserState>({
     user: auth.currentUser,
     isLoading: auth.currentUser === null ? true : false,
@@ -33,7 +17,7 @@ function UserProvider({ children }: IProviderProps) {
   });
 
   const isSignedIn = userState.user !== null;
-  const userId = isSignedIn ? (userState.user!.uid as any) : undefined;
+  const userId = isSignedIn ? (userState.user?.uid as string) : undefined;
 
   useEffect(() => {
     const onChange = (currentUser: firebase.User | null) => {
@@ -114,14 +98,7 @@ function UserProvider({ children }: IProviderProps) {
 // explicitly determine if user has been initialized
 const UserContext = createContext<IUserContext | null>(null);
 
-// function UserProvider({ children }) {
-//   const userState = useUserInternal();
-//   return (
-//     <UserContext.Provider value={userState}>{children}</UserContext.Provider>
-//   );
-// }
-
-function useUser() {
+function useUser(): IUserContext {
   const userState = useContext(UserContext);
   if (!userState) {
     throw new Error(

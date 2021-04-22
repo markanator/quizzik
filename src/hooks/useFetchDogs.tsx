@@ -2,20 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-interface IDogStateTypes {
-  isLoading: boolean;
-  isError: boolean;
-  statusMessage: string;
-  data: null | string[];
-}
-
-interface IApiResponse {
-  data: {
-    message: string[];
-    status: string;
-  };
-}
+import { IApiResponse, IDogStateTypes } from "types/UseFetchTypes";
 
 /**
  *  Custom Hook...
@@ -23,7 +10,7 @@ interface IApiResponse {
  * @returns isLoading, isError, statusMessage, data...
  */
 
-function useFetchDogs(amount: number) {
+function useFetchDogs(amount: number): [boolean, boolean, string[] | null] {
   const [dogFetch, setDogFetch] = useState<IDogStateTypes>({
     isLoading: true,
     isError: false,
@@ -60,7 +47,7 @@ function useFetchDogs(amount: number) {
   }, []);
 
   const { isLoading, isError, data } = dogFetch;
-  return [isLoading, isError, data] as const;
+  return [isLoading, isError, data];
 }
 
 export default useFetchDogs;

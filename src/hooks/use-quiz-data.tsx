@@ -1,21 +1,9 @@
 import { useEffect, useState } from "react";
+import { IFetchReturnTypes, IQuizStateTypes } from "types/UseQuizData";
 import decodeTriviaData from "../utils/decodeTriviaData";
 import fetcher from "../utils/fetcher";
-// import decodeTriviaData from "../decodeTriviaData";
-// import fetcher from "../../utils/fetcher";
 
-interface IQuizStateTypes {
-  isLoading: boolean;
-  errorMessage: string;
-  data: null | any[];
-}
-
-interface IFetchReturnTypes {
-  response_code: number;
-  results: any[];
-}
-
-function useQuizData(amount = 5, difficulty = "") {
+function useQuizData(amount = 5, difficulty = ""): IQuizStateTypes {
   const [quizFetch, setQuizFetch] = useState<IQuizStateTypes>({
     isLoading: true,
     errorMessage: "",
@@ -29,12 +17,12 @@ function useQuizData(amount = 5, difficulty = "") {
         type: "multiple",
       });
       if (difficulty !== "") params.append("difficulty", difficulty);
-      const url: string = `https://opentdb.com/api.php?${params.toString()}`;
+      const url = `https://opentdb.com/api.php?${params.toString()}`;
       try {
         //! custom fetcher
-        const json = await fetcher(url);
-
-        const { response_code, results }: IFetchReturnTypes = json;
+        const { response_code, results }: IFetchReturnTypes = await fetcher(
+          url
+        );
 
         // Stops the chain of thens and kicks things over to the catch.
         if (response_code === 1) {

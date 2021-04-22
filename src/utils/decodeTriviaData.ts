@@ -1,6 +1,6 @@
 import he from "he";
 
-export default function decodeTriviaData(data: any[]) {
+export default function decodeTriviaData(data: any[]): any {
   const decodedData = data.map((item) => {
     return {
       ...item,

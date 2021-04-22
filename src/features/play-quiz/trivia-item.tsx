@@ -26,8 +26,8 @@ function TriviaItem({
   question,
   onNextClick,
   onAnswerSelected,
-}: Props) {
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+}: Props): React.ReactElement {
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const hasPickedAnswer = selectedAnswer !== null;
   // const [playCorrect] = useSound(correctSound, { volume: 0.5 });
   // const [playIncorrect] = useSound(incorrectSound, { volume: 0.5 });
@@ -39,8 +39,8 @@ function TriviaItem({
   let nextButtonClassName = "trivia-item__button trivia-item__next-button";
   if (!hasPickedAnswer) nextButtonClassName += " trivia-item__button--disabled";
 
-  const onAnswerClick = (event: any) => {
-    const playerAnswer = event.target.innerHTML;
+  const onAnswerClick = ({ target }: any) => {
+    const playerAnswer = target.innerHTML;
     setSelectedAnswer(playerAnswer);
     const wasPlayerCorrect = playerAnswer === correctAnswer;
     // if (wasPlayerCorrect) playCorrect();
@@ -52,7 +52,7 @@ function TriviaItem({
     <div>
       <p className="trivia-item__question">{question}</p>
       <ul className="trivia-item__answers">
-        {shuffledAnswers.map((answer, i) => {
+        {shuffledAnswers.map((answer) => {
           let className = "trivia-item__button";
           if (hasPickedAnswer) {
             const pickedThisAnswer = answer === selectedAnswer;

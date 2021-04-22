@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react";
-import { db, firebase } from "../firebase";
+import { IQuizes, IQuizResultsType, UseQuizTypes } from "types/UseQuizOnce";
+import { db } from "../firebase";
 
-interface IQuizes {
-  status: "loading" | "success" | "error";
-  snapshot: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData> | null;
-  error: null;
-}
-
-interface IQuizResultsType {
-  id: string;
-  data: firebase.firestore.DocumentData;
-}
-
-function useQuizzesOnce() {
+function useQuizzesOnce(): UseQuizTypes {
   const [quizzes, setQuizzes] = useState<IQuizes>({
     status: "loading",
     snapshot: null,
@@ -41,7 +31,7 @@ function useQuizzesOnce() {
     results = snapshot.docs.map((docSnapshot) => ({
       id: docSnapshot.id,
       data: docSnapshot.data(),
-    })) as any;
+    }));
   }
 
   return {

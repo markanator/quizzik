@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import animationImage from "../../images/beeple-potus-3012.gif";
 import "./about-page.css";
 
-function AboutPage() {
+function AboutPage(): ReactElement {
   return (
     <main>
       <h1>About Me</h1>

@@ -22,6 +22,7 @@ function StartScreen({ quizData, onPlayClick }: Props) {
     difficulty,
     ownerName,
     questions,
+    // eslint-disable-next-line prefer-const
     lastModifiedAt,
   } = quizData;
 
