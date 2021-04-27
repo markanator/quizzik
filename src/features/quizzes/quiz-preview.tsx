@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
 import "./quiz-preview.css";
-import { firebase } from "../../firebase";
+// import { firebase } from "../../firebase";
 import { ReactElement } from "react";
 
 interface Props {
   id: string;
-  data:
-    | {
-        title: string;
-        tags: string[];
-        description: string;
-        ownerName: string;
-      }
-    | firebase.firestore.DocumentData;
+  data: {
+    title: string;
+    tags: string[];
+    description: string;
+    ownerName: string;
+  };
 }
 function QuizPreview({ id, data }: Props): ReactElement {
   let { title, tags, description, ownerName } = data;

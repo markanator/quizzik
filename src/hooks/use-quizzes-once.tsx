@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { IQuizes, IQuizResultsType, UseQuizTypes } from "types/UseQuizOnce";
+import { IQuizDataType, QuizType } from "types/LoadDateTypes";
+import { IQuizes, UseQuizTypes } from "types/UseQuizOnce";
 import { db } from "../firebase";
 
 function useQuizzesOnce(): UseQuizTypes {
@@ -26,11 +27,11 @@ function useQuizzesOnce(): UseQuizTypes {
 
   const { status, snapshot, error } = quizzes;
 
-  let results: IQuizResultsType[] = [];
+  let results: QuizType[] = [];
   if (snapshot !== null) {
     results = snapshot.docs.map((docSnapshot) => ({
       id: docSnapshot.id,
-      data: docSnapshot.data(),
+      data: docSnapshot.data() as IQuizDataType,
     }));
   }
 
