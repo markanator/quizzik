@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 import ErrorMessage from "../../components/error-message";
 import useUser from "../../hooks/useUser";
 
@@ -15,6 +16,9 @@ const HomePage = (): ReactElement => {
     contents = (
       <>
         <p>TODO: users quizes on the page</p>
+        <Link to="/edit/new">
+          <button>Create New Quiz</button>
+        </Link>
         <button onClick={userState.signOut}>
           {userState.isLoading ? "Signing out..." : "Sign Out"}
         </button>

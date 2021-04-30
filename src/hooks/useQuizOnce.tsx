@@ -1,19 +1,20 @@
-import { db } from "../firebase";
+import { db, firebase } from "../firebase";
 import { useEffect, useState } from "react";
+import { IQuizDataType } from "types/types";
 
 interface QuizReturn {
   id: string;
   exists: boolean;
-  data: any;
+  data: IQuizDataType;
   status: string;
-  error?: any;
+  error: firebase.auth.Error | null;
   set: (arg0: { title: string }) => Promise<void>;
   delete: () => Promise<void>;
 }
 interface IFetchQuizState {
-  status: "loading" | "success" | "error" | "deleting" | "updating";
+  status: "loading" | "success" | "error" | "deleting" | "updating" | "deleted";
   snapshot: null | any;
-  error: null | string;
+  error: firebase.auth.Error | null;
 }
 
 function useQuizOnce(quizId: string): QuizReturn {
@@ -65,7 +66,7 @@ function useQuizOnce(quizId: string): QuizReturn {
       console.log(error);
       setQuizState((prev) => ({
         ...prev,
-        error: error,
+        error,
         snapshot: null,
         status: "error",
       }));
@@ -76,12 +77,12 @@ function useQuizOnce(quizId: string): QuizReturn {
     setQuizState((prev) => ({ ...prev, status: "deleting", error: null }));
     try {
       await db.collection("quizzes").doc(quizId).delete();
-      setQuizState({ status: "loading", error: null, snapshot: null });
+      setQuizState({ status: "deleted", error: null, snapshot: null });
     } catch (error) {
       console.error(error);
       setQuizState((prev) => ({
         ...prev,
-        error: error,
+        error,
         snapshot: null,
         status: "error",
       }));

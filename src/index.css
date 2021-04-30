@@ -58,3 +58,9 @@ input {
 label {
   margin-right: 0.5rem;
 }
+
+.quiz-form__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
