@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from "react";
 import "./form.css";
 
 interface IFormProps {
-  onSubmit: (e: any) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled: boolean;
   children: ReactNode;
 }

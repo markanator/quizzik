@@ -1,11 +1,12 @@
 import { db, firebase } from "../firebase";
 import { useEffect, useState } from "react";
-import { IQuizDataType } from "types/types";
+import { IFormValues } from "features/edit-quiz/QuizForm";
+// import { IQuizDataType } from "types/types";
 
 interface QuizReturn {
-  id: string;
+  id: string | undefined;
   exists: boolean;
-  data: IQuizDataType;
+  data: firebase.firestore.DocumentData | undefined;
   status: string;
   error: firebase.auth.Error | null;
   set: (arg0: { title: string }) => Promise<void>;
@@ -13,7 +14,7 @@ interface QuizReturn {
 }
 interface IFetchQuizState {
   status: "loading" | "success" | "error" | "deleting" | "updating" | "deleted";
-  snapshot: null | any;
+  snapshot: null | firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>;
   error: firebase.auth.Error | null;
 }
 
@@ -28,7 +29,7 @@ function useQuizOnce(quizId: string): QuizReturn {
     async function getDoc() {
       setQuizState({ status: "loading", snapshot: null, error: null });
       try {
-        const snapshot: any = await db.collection("quizzes").doc(quizId).get();
+        const snapshot = await db.collection("quizzes").doc(quizId).get();
         setQuizState({ status: "success", snapshot, error: null });
       } catch (error) {
         console.error(error);
@@ -38,18 +39,7 @@ function useQuizOnce(quizId: string): QuizReturn {
     getDoc();
   }, [quizId]);
 
-  const { status, snapshot, error } = quizState;
-
-  let id;
-  let exists;
-  let data;
-  if (snapshot) {
-    id = snapshot.id;
-    exists = snapshot.exists;
-    data = snapshot.data();
-  }
-
-  const setQuiz = async (newQuizData: any): Promise<void> => {
+  const setQuiz = async (newQuizData: IFormValues): Promise<void> => {
     setQuizState((prev) => ({ ...prev, status: "updating", error: null }));
     try {
       await db
@@ -88,6 +78,17 @@ function useQuizOnce(quizId: string): QuizReturn {
       }));
     }
   };
+
+  const { status, snapshot, error } = quizState;
+
+  let id;
+  let exists = false;
+  let data;
+  if (snapshot) {
+    id = snapshot.id;
+    exists = snapshot.exists;
+    data = snapshot.data();
+  }
 
   return {
     id,

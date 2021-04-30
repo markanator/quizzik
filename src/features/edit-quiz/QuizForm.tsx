@@ -1,12 +1,14 @@
-import quizzes from "data/sample-data/sample-quizzes";
+// import quizzes from "data/sample-data/sample-quizzes";
 import React, { ReactElement, useState } from "react";
 import { Form, SelectInput, TextInput } from "./FormComponent";
+import { firebase } from "../../firebase";
 
-interface IFormValues {
+export interface IFormValues {
   title: string;
   description: string;
   difficulty: string;
   tags: string[];
+  createdAt?: firebase.firestore.FieldValue;
   // questions?: QuestionType[];
   // createdAt?: firebase.firestore.Timestamp;
   // lastModifiedAt?: firebase.firestore.Timestamp;
@@ -27,8 +29,15 @@ const diffArr = [
   { value: "hard", label: "Hard" },
 ];
 
+const ogValues: IFormValues = {
+  title: "",
+  description: "",
+  difficulty: "easy",
+  tags: [],
+};
+
 const QuizForm = ({
-  initialData = {} as any,
+  initialData = ogValues,
   onSave,
   onDelete,
   isSaving,
