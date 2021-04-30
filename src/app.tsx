@@ -5,7 +5,7 @@ import PageHeader from "./components/page-header";
 import { UserProvider } from "./hooks/useUser";
 import LoadingSpinner from "./components/loading-spinner";
 import useUser from "./hooks/useUser";
-// import NotFoundPage from "pages/not-found-page";
+import ProtectedRoute from "utils/ProtectedRoute";
 
 // code split => React.lazy.. load :)
 const NotFoundPage = React.lazy(() => import("./pages/not-found-page"));
@@ -14,6 +14,7 @@ const QuizzesPage = React.lazy(() => import("./features/quizzes"));
 const AboutPage = React.lazy(() => import("./pages/about"));
 const HomePage = React.lazy(() => import("./pages/home"));
 const FirebaseTest = React.lazy(() => import("./pages/FirebaseTest"));
+const EditPage = React.lazy(() => import("./pages/EditPage"));
 
 function ProviderWrappedApp(): ReactElement {
   return (
@@ -26,9 +27,9 @@ function ProviderWrappedApp(): ReactElement {
 }
 
 function App(): ReactElement {
-  const userState = useUser();
+  const { isLoading, isSignedIn } = useUser();
 
-  if (userState.isLoading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -50,9 +51,12 @@ function App(): ReactElement {
           <Route path="/quizzes">
             <QuizzesPage />
           </Route>
-          <Route path="/quiz">
+          <Route path="/play/:id">
             <QuizPage />
           </Route>
+          <ProtectedRoute isSignedIn={isSignedIn} path="/edit/:id">
+            <EditPage />
+          </ProtectedRoute>
           <Route path="/demo">
             <FirebaseTest />
           </Route>

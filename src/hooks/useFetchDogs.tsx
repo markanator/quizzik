@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { IApiResponse, IDogStateTypes } from "types/UseFetchTypes";
+import { IApiResponse, IDogStateTypes } from "../types/types";
 
 /**
  *  Custom Hook...

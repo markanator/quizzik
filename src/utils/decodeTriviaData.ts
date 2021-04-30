@@ -1,4 +1,5 @@
 import he from "he";
+import { QuestionDataType } from "types/types";
 
 export default function decodeTriviaData(
   data: QuestionDataType[]
@@ -14,13 +15,4 @@ export default function decodeTriviaData(
     };
   });
   return decodedData;
-}
-
-export interface QuestionDataType {
-  category: string;
-  type: string;
-  difficulty: string;
-  question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
 }

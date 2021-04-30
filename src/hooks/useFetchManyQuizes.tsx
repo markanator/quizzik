@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { IQuizDataType, QuizType } from "types/LoadDateTypes";
-import { IQuizes, UseQuizTypes } from "types/UseQuizOnce";
+import { IQuizDataType, IQuizes, QuizType, UseQuizTypes } from "../types/types";
 import { db } from "../firebase";
 
-function useQuizzesOnce(): UseQuizTypes {
+function useFetchManyQuizzes(): UseQuizTypes {
   const [quizzes, setQuizzes] = useState<IQuizes>({
     status: "loading",
     snapshot: null,
@@ -43,4 +42,4 @@ function useQuizzesOnce(): UseQuizTypes {
   };
 }
 
-export default useQuizzesOnce;
+export default useFetchManyQuizzes;

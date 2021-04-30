@@ -6,14 +6,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "lint": "eslint --ext .ts,.tsx .",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
     "format": "npm run prettier -- --write"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {

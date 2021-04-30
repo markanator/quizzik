@@ -1,4 +1,4 @@
-import { QuizType } from "types/LoadDateTypes";
+import { QuizType } from "../../../types/types";
 import { firebase } from "../../../firebase";
 
 const videoGamesQuiz: QuizType = {

@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
 import ErrorMessage from "../../components/error-message";
 import LoadingSpinner from "../../components/loading-spinner";
-import useQuizzesOnce from "../../hooks/use-quizzes-once";
+import useQuizOnce from "../../hooks/useFetchManyQuizes";
 import "./quiz-listing.css";
 import QuizPreview from "./quiz-preview";
 
 function QuizListing(): ReactElement {
-  const quizzes = useQuizzesOnce();
+  const quizzes = useQuizOnce();
 
   if (quizzes.status === "loading") return <LoadingSpinner />;
   if (quizzes.status === "error")

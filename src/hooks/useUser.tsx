@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { IProviderProps, IUserContext, IUserState } from "types/UseUserTypes";
+import { IProviderProps, IUserContext, IUserState } from "../types/types";
 import { auth, firebase, provider } from "../firebase";
 
 // Main User Provider

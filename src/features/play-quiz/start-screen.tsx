@@ -1,6 +1,6 @@
 import ErrorMessage from "components/error-message";
 import { ReactElement } from "react";
-import { IQuizDataType } from "types/LoadDateTypes";
+import { IQuizDataType } from "../../types/types";
 import "./start-screen.css";
 
 interface Props {

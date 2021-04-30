@@ -4,7 +4,7 @@ import Stats from "./stats";
 import TriviaItem from "./trivia-item";
 import { FadeTransition, FadeWrapper } from "./fade-transition";
 import StartScreen from "./start-screen";
-import { IQuizDataType } from "types/LoadDateTypes";
+import { IQuizDataType } from "../../types/types";
 
 /**
  * The Game is responsible for orchestrating the flow of the quiz game.
