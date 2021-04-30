@@ -11,7 +11,7 @@ interface QuizReturn {
   delete: () => Promise<void>;
 }
 interface IFetchQuizState {
-  status: "loading" | "success" | "error";
+  status: "loading" | "success" | "error" | "deleting" | "updating";
   snapshot: null | any;
   error: null | string;
 }
@@ -48,11 +48,44 @@ function useQuizOnce(quizId: string): QuizReturn {
     data = snapshot.data();
   }
 
-  const setQuiz = async ({ title }: { title: string }): Promise<void> => {
-    console.log("setting quiz");
+  const setQuiz = async (newQuizData: any): Promise<void> => {
+    setQuizState((prev) => ({ ...prev, status: "updating", error: null }));
+    try {
+      await db
+        .collection("quizzes")
+        .doc(quizId)
+        .set(newQuizData, { merge: true });
+
+      setQuizState((prev) => ({
+        ...prev,
+        error: null,
+        status: "success",
+      }));
+    } catch (error) {
+      console.log(error);
+      setQuizState((prev) => ({
+        ...prev,
+        error: error,
+        snapshot: null,
+        status: "error",
+      }));
+    }
   };
   const deleteQuiz = async (): Promise<void> => {
-    console.log("delete quiz pressed");
+    // setQuizState({ status: "loading", error: null, snapshot: snappy });
+    setQuizState((prev) => ({ ...prev, status: "deleting", error: null }));
+    try {
+      await db.collection("quizzes").doc(quizId).delete();
+      setQuizState({ status: "loading", error: null, snapshot: null });
+    } catch (error) {
+      console.error(error);
+      setQuizState((prev) => ({
+        ...prev,
+        error: error,
+        snapshot: null,
+        status: "error",
+      }));
+    }
   };
 
   return {
