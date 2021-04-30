@@ -31,7 +31,7 @@ function QuizPreview({ id, data }: Props): ReactElement {
       </ul>
       <div className="quiz-preview__author">By: {ownerName}</div>
       <p className="quiz-preview__description">{description}</p>
-      <Link to={`play-quiz/${id}`} className="quiz-preview__play">
+      <Link to={`play/${id}`} className="quiz-preview__play">
         <button>Play</button>
       </Link>
     </article>
